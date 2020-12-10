@@ -1,4 +1,3 @@
-BIN := abstouch
 DESTDIR :=
 CC ?= gcc
 PKGNAME := sahito-service
@@ -16,7 +15,7 @@ build: src/linux/c/main.c
 	${CC} src/linux/c/main.c -o build/sahito-service
 
 .PHONY: install
-install:
+install: build/sahito-service
 	@#Bin Files
 	install -Dm755 build/sahito-service "${DESTDIR}${PREFIX}/share/${PKGNAME}/service"
 
