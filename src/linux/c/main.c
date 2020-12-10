@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(PORT);
 
-    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address))<0)
+    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0)
     {
         perror(" \x1b[1;31m=> \x1b[1;37mFailed to bind server!\x1b[;m");
         return EXIT_FAILURE;
@@ -45,9 +45,9 @@ int main(int argc, char *argv[])
         perror(" \x1b[1;31m=> \x1b[1;37mCouldn't listen to port!\x1b[;m");
         return EXIT_FAILURE;
     }
-    if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0)
+    if ((new_socket = accept(server_fd, (struct sockaddr*) &address, (socklen_t*) &addrlen)) < 0)
     {
-        perror(" \x1b[1;31m=> \x1b[1;37mCouldn't accept!\x1b[;m");
+        perror(" \x1b[1;31m=> \x1b[1;37mCouldn't accept the client!\x1b[;m");
         return EXIT_FAILURE;
     }
 
@@ -56,8 +56,14 @@ int main(int argc, char *argv[])
         if (stop)
             break;
 
+        if (!valread)
+            new_socket = accept(server_fd, (struct sockaddr*) &address, (socklen_t*) &addrlen);
+
         valread = read(new_socket, buffer, 1024);
-        printf(" \x1b[1;32m=> \x1b[1;37mReceived message: \x1b[;m%s\n", buffer);
+        if (valread)
+        {
+            printf(" \x1b[1;32m=> \x1b[1;37mReceived message: \x1b[;m%s\n", buffer);
+        }
     }
 
     return EXIT_SUCCESS;
