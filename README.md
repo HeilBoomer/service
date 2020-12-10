@@ -54,4 +54,4 @@ $ systemctl enable sahito
 
 ### Windows
 
-**Not implemented yet!**
+Windows service will start automatically if you installed it using the code above.
