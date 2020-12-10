@@ -1,0 +1,12 @@
+[Unit]
+Description=A Service to Handle the Operations of Sahito Project
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/share/sahito-service/service
+
+[Install]
+WantedBy=multi-user.target
