@@ -24,10 +24,17 @@ You can then uninstall with following command in the same directory.
 ```bash
 $ sudo make uninstall
 ```
-
 ### Windows
 
-**Not implemented yet!**
+#### Building From Source
+
+You can install the service directly with startup auto if you want:
+
+```cmd
+> git clone https://github.com/sahito-org/service.git
+> cd service
+> python src/win32/py/main.py install --startup auto
+```
 
 ## Usage
 
